@@ -5,30 +5,41 @@
 #include <cstdlib>
 #include <cstring>
 
+/*
+ * Prints sudoku to stdout
+ */
 void print_sudoku (unsigned* sudoku) {
-    for (unsigned i = 0; i < SUDOKU_ELEMENTS; i++) {       
-       if (i % 9 == 0) {
+    for (unsigned i = 0; i < SUDOKU_ELEMENTS; i++)
+       if (i % 9 == 0)
            if (i % 27 == 0 && i != 0) 
                printf ("\n------ ------- ------\n%d ", sudoku[i]);
            else 
                printf ("\n%d ", sudoku[i]);
-       } else if (i % 3 == 0) {
+       else if (i % 3 == 0)
            printf ("| %d ", sudoku[i]);
-       } else {
+       else
            printf ("%d ", sudoku[i]);
-       }
-    }
+
     printf ("\n\n");
 }
 
+/*
+ * Parse input string, format:
+ * <digit>,<digit>,<digit>
+ * where '0' is used for empty place
+ */
 unsigned* parse_input (char* input) {
     unsigned position = 0;
     unsigned* sudoku = (unsigned*) malloc (SUDOKU_ELEMENTS * sizeof (unsigned));
     memset (sudoku, 0, SUDOKU_ELEMENTS * sizeof (unsigned));
 
     int read_number;
+    // using default tokenizer
     char* buffor = strtok (input, ",");
     while (buffor != NULL) {
+        if (position >= 81)
+            break;
+
         read_number = atoi (buffor);
         if (read_number < 0 || read_number > 9) {
             printf ("Wrong number in sudoku! %d\n", read_number);

@@ -8,6 +8,7 @@
 int main (int argc, const char* argv[]) {
 
     if (argc != 2) {
+        printf ("\nWrong input! %s\n\n", argv[1]);
         printf ("\nUsage: %s <comma separated list of sudoku numbers>\n\n", argv[0]);
         exit (1);
     }
