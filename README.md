@@ -1,4 +1,4 @@
 SudokuSolver
 ============
 
-Sudoku solver written in C using AI techniques.
+Sudoku solver written in C++ using AI techniques.
